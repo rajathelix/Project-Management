@@ -37,11 +37,15 @@ public class EmployeeService {
         Project proj = projectRepository.save(project.getProject());
         List<ProjectSkill> skillList= new ArrayList<ProjectSkill>();
         for (long i:project.getSkills()){
-            ProjectSkill skill= new ProjectSkill(proj.getId(),i);
+            ProjectSkill skill= new ProjectSkill(proj.getId(),new Skills(i));
             skillList.add(skill);
         }
         proj.setProjectSkill(skillList);
         proj = projectRepository.save(project.getProject());
         return proj.getId();
+    }
+
+    public Project getProject(long id){
+        return projectRepository.findById(id).get();
     }
 }

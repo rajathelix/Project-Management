@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Dao.ProjectRepository;
 import com.example.demo.Dto.CreateProjectRequest;
 import com.example.demo.Entity.Employee;
+import com.example.demo.Entity.Project;
 import com.example.demo.Entity.ProjectSkill;
 import com.example.demo.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class EmployeeController {
     @PostMapping(path = "/createProject")
     public ResponseEntity<Long> createProject(@RequestBody CreateProjectRequest project){
         return new ResponseEntity<Long>(employeeService.createProject(project),HttpStatus.OK);
+    }
+
+    @GetMapping("project/{id}")
+    public ResponseEntity<Project> getProject(@PathVariable long id){
+        return new ResponseEntity<Project>(employeeService.getProject(id),HttpStatus.OK);
     }
 }

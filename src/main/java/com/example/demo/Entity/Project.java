@@ -2,6 +2,7 @@ package com.example.demo.Entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Project {
     @Column(name = "project_name")
     private String projectName;
 
-    @OneToMany(targetEntity = ProjectSkill.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = ProjectSkill.class, cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private List<ProjectSkill> projectSkill;
 

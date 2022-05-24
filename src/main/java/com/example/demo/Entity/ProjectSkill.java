@@ -18,12 +18,13 @@ public class ProjectSkill {
     private long id;
     @Column(name = "project_id")
     private long projectId;
-    @Column(name = "skill_id")
-    private long skillId;
+    @ManyToOne(targetEntity = Skills.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "skill_id",referencedColumnName = "skill_id")
+    private Skills skill;
 
-    public ProjectSkill(long projectId, long skillId){
+    public ProjectSkill(long projectId, Skills skill){
         this.projectId=projectId;
-        this.skillId=skillId;
+        this.skill=skill;
 
     }
 
